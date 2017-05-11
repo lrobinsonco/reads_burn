@@ -13,4 +13,15 @@ router.get('/', function(req, res, next) {
 router.get('/new', (req,res) =>{
   res.render('add_book');
 });
+
+router.post('/', (req, res) =>{
+  pg('book').insert({
+    title: req.body.title,
+    genre: req.body.genre,
+    description: req.body.description,
+    cover_url: req.body.cover_image_url
+  }).then(() =>{
+    res.redirect('/books');
+  });
+})
 module.exports = router;
