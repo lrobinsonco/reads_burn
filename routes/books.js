@@ -23,5 +23,20 @@ router.post('/', (req, res) =>{
   }).then(() =>{
     res.redirect('/books');
   });
-})
+});
+
+router.get('/delete/:id', (req, res) =>{
+  pg('book').select().where('id', req.params.id)
+  .then((books) => {
+    res.render("single_book", {book: books[0]});
+  });
+});
+
+router.delete("/:id", (req, res) => {
+  pg('book').del().where("id", req.params.id)
+  .then(() => {
+    res.redirect("/books");
+  });
+});
+
 module.exports = router;
