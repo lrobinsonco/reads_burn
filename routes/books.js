@@ -10,4 +10,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/new', (req,res) =>{
+  res.render('add_book');
+});
 module.exports = router;
